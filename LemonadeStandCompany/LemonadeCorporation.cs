@@ -1,11 +1,10 @@
 ﻿using System;
 namespace LemonadeStandCompany
 {
-    public class AllStands
+    public class LemonadeCorporation
     {
-        public AllStands()
+        public LemonadeCorporation()
         {
-            
         }
     }
 }
