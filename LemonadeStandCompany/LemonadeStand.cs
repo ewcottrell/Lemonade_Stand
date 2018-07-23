@@ -3,7 +3,8 @@ namespace LemonadeStandCompany
 {
     public class LemonadeStand
     {
-        public string Name { get; set; }
+        
+        public string Name { get; set;  }
         public decimal CupsPerDay { get; set; }
         public decimal CostPerCup { get; set; }
         public decimal PricePerCup { get; set; }
