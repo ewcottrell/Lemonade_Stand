@@ -38,6 +38,7 @@
     <Compile Include="Foods.cs" />
     <Compile Include="LemonadeStand.cs" />
     <Compile Include="PopsicleStand.cs" />
+    <Compile Include="Stands.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

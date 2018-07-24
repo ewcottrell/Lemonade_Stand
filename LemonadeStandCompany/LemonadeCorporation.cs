@@ -6,6 +6,7 @@ namespace LemonadeStandCompany
     {
         public string Name { get; set; }
         public List<LemonadeStand> Locations { get; set; } = new List<LemonadeStand>();
+        public List<PopsicleStand> popsicleStands { get; set; } = new List<PopsicleStand>();
 
 
         public decimal GetCorpTotalDailyRevenue()
@@ -14,6 +15,10 @@ namespace LemonadeStandCompany
             foreach (LemonadeStand location in Locations)
             {
                 grandTotalRev += location.TotalDailyRevenue();
+            }
+            foreach (PopsicleStand PopStand in popsicleStands)
+            {
+                grandTotalRev += PopStand.PopStandTotalDailyRevenue();
             }
             return grandTotalRev;
         }
@@ -25,6 +30,10 @@ namespace LemonadeStandCompany
             {
                 grandTotalCost += location.TotalDailyCost();
             }
+            foreach (PopsicleStand PopStand in popsicleStands)
+            {
+                grandTotalCost += PopStand.PopStandTotalDailyCost();
+            }
             return grandTotalCost;
         }
 
@@ -34,6 +43,10 @@ namespace LemonadeStandCompany
             foreach (LemonadeStand location in Locations)
             {
                 grandTotalProfit += location.TotalDailyProfit();
+            }
+            foreach (PopsicleStand PopStand in popsicleStands)
+            {
+                grandTotalProfit += PopStand.PopStandTotalDailyProfit();
             }
             return grandTotalProfit;
         }
