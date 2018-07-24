@@ -4,24 +4,39 @@ namespace LemonadeStandCompany
 {
     public class LemonadeCorporation
     {
-        public List<LemonadeStand> adeStands { get; set; }
+        public string Name { get; set; }
+        public List<LemonadeStand> Locations { get; set; } = new List<LemonadeStand>();
 
-        public decimal CorpCupsPerDay { get; set; }
-        public decimal CorpCostPerCup { get; set; }
-        public decimal CorpPricePerCup { get; set; }
 
-        public decimal CorpTotalDailyRevenue(decimal CorpCupsPerDay, decimal CorpPricePerCup)
+        public decimal GetCorpTotalDailyRevenue()
         {
-            return CorpCupsPerDay * CorpPricePerCup;
+            decimal grandTotalRev = 0;
+            foreach (LemonadeStand location in Locations)
+            {
+                grandTotalRev += location.TotalDailyRevenue();
+            }
+            return grandTotalRev;
         }
 
-        public decimal CorpTotalDailyCost(decimal CorpCupsPerDay, decimal CorpCostPerCup)
+        public decimal GetCorpTotalDailyCost()
         {
-            return CorpCupsPerDay * CorpCostPerCup;
+            decimal grandTotalCost = 0;
+            foreach (LemonadeStand location in Locations)
+            {
+                grandTotalCost += location.TotalDailyCost();
+            }
+            return grandTotalCost;
         }
 
-
-
+        public decimal GetCorpTotalDailyProfit()
+        {
+            decimal grandTotalProfit = 0;
+            foreach (LemonadeStand location in Locations)
+            {
+                grandTotalProfit += location.TotalDailyProfit();
+            }
+            return grandTotalProfit;
+        }
 
     }
 }
