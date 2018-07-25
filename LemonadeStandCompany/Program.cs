@@ -15,8 +15,7 @@ namespace LemonadeStandCompany
 
             Console.WriteLine("Well " + ownerName + " since lemonade is our Flagship product. Everyone must have " +
                               "atleast one lemonade stand.");
-            Console.WriteLine("So how many lemonade stands do you want to open?");
-            int numberOfLemonadeStands = int.Parse(Console.ReadLine());
+            int numberOfLemonadeStands = UserInteraction.GetUserIntegerNumber("So how many lemonade stands do you want to open?");
 
 
             //Create a new instance of a lemonadeCorp
@@ -30,8 +29,7 @@ namespace LemonadeStandCompany
 
                 Console.WriteLine("The name of lemonade stand " + (i + 1) + " is " + stand.Name
                                  + ".");
-                Console.WriteLine(ownerName + " What is the price per cup at " + stand.Name + "?");
-                stand.PricePerCup = decimal.Parse(Console.ReadLine());
+                stand.PricePerCup = UserInteraction.GetUserDecimalNumbers(ownerName + " What is the price per cup at " + stand.Name + "?");
 
                 Console.WriteLine("So PPC or price per cup at " + stand.Name + " is " + stand.PricePerCup + ".");
                 Console.WriteLine("What is the cost per cup or cpc at " + stand.Name + "?");
@@ -44,10 +42,8 @@ namespace LemonadeStandCompany
                 stand.CupsPerDay = decimal.Parse(Console.ReadLine());
                 LemonBoss.GetTotalDailyAdeStandsProfit();
                 Console.WriteLine("The cpd or Cups Per Day at " + stand.Name + " is " + stand.CupsPerDay + ".");
-                Console.WriteLine("So if you were to sell " + stand.CupsPerDay + " cpd at " + stand.Name
-                                  + " at " + stand.PricePerCup + " per cup " +
-                                  " your total revenue per day at " + stand.Name
-                                  + " will be " + stand.TotalDailyRevenue());
+                Console.WriteLine($"So if you were to sell {stand.CupsPerDay} cpd at {stand.Name} at {stand.PricePerCup} per cup " +
+                                  "your total revenue per day at {stand.Name} will be { stand.TotalDailyRevenue()}");
                 LemonBoss.GetTotalDailyAdeStandsRevenue();
                 Console.WriteLine();
                 Console.WriteLine("And your total daily cost would be " + stand.TotalDailyCost());
@@ -56,46 +52,50 @@ namespace LemonadeStandCompany
 
                 LemonBoss.AdeStands.Add(stand);
             }
-            Console.WriteLine("Did you want to open any popsickle stands?");
-            string popstandsdesired = Console.ReadLine();
-            if (popstandsdesired == "yes")
-                Console.WriteLine(ownerName + " how many popsickle stands do you want?");
-            int numberOfPopsicleStands = int.Parse(Console.ReadLine());
-
-            for (int i = 0; i < numberOfPopsicleStands; i++)
+                bool popstandsdesired = UserInteraction.AnsweredYes("Did you want to open any popsickle stands?");
+            if (popstandsdesired)
             {
-                PopsicleStand stand = new PopsicleStand();
-                Console.WriteLine("So what will be the name of Popsicle Stand " + (i + 1) + "?");
-                stand.Name = Console.ReadLine();
+                Console.WriteLine(ownerName + " how many popsickle stands do you want?");
+                int numberOfPopsicleStands = int.Parse(Console.ReadLine());
 
-                Console.WriteLine("Ok the name of popsicle stand " + (i + 1) + " is " + stand.Name
-                                 + ".");
-                Console.WriteLine(ownerName + " What is the price per popsicle at " + stand.Name + "?");
-                stand.PricePerPop = decimal.Parse(Console.ReadLine());
+                for (int i = 0; i < numberOfPopsicleStands; i++)
+                {
+                    PopsicleStand stand = new PopsicleStand();
+                    Console.WriteLine("So what will be the name of Popsicle Stand " + (i + 1) + "?");
+                    stand.Name = Console.ReadLine();
+                    
+                    Console.WriteLine("Ok the name of popsicle stand " + (i + 1) + " is " + stand.Name
+                                     + ".");
+                    Console.WriteLine(ownerName + " What is the price per popsicle at " + stand.Name + "?");
+                    stand.PricePerPop = decimal.Parse(Console.ReadLine());
 
-                Console.WriteLine("So PPP or price per pop at " + stand.Name + " is " + stand.PricePerPop + ".");
-                Console.WriteLine("What is the cost per pop or cpp at " + stand.Name + "?");
-                stand.CostPerPop = decimal.Parse(Console.ReadLine());
-                LemonBoss.GetTotalDailyPopStandsCosts();
-                Console.WriteLine("So CPP or cost per pop at " + stand.Name + " is " + stand.CostPerPop + ".");
+                    Console.WriteLine("So PPP or price per pop at " + stand.Name + " is " + stand.PricePerPop + ".");
+                    Console.WriteLine("What is the cost per pop or cpp at " + stand.Name + "?");
+                    stand.CostPerPop = decimal.Parse(Console.ReadLine());
+                    LemonBoss.GetTotalDailyPopStandsCosts();
+                    Console.WriteLine("So CPP or cost per pop at " + stand.Name + " is " + stand.CostPerPop + ".");
 
-                Console.WriteLine("Great so how many pops per day do you anticipate " +
-                                  "selling at " + stand.Name + "?");
-                stand.PopsPerDay = decimal.Parse(Console.ReadLine());
-                LemonBoss.GetTotalDailyPopStandsProfit();
-                Console.WriteLine("The ppd or pops Per Day at " + stand.Name + " is " + stand.PopsPerDay + ".");
-                Console.WriteLine("So if you were to sell " + stand.PopsPerDay + " cpd at " + stand.Name
-                                  + " at " + stand.PricePerPop + " per pop " +
-                                  " your total revenue per day at " + stand.Name
-                                  + " will be " + stand.PopStandTotalDailyRevenue());
-                LemonBoss.GetTotalDailyPopStandsRevenue();
-                Console.WriteLine();
-                Console.WriteLine("And your total daily cost would be " + stand.PopStandTotalDailyCost());
-                Console.WriteLine();
-                Console.WriteLine("which means that your total daily profits will be " + stand.PopStandTotalDailyProfit());
+                    Console.WriteLine("Great so how many pops per day do you anticipate " +
+                                      "selling at " + stand.Name + "?");
+                    stand.PopsPerDay = decimal.Parse(Console.ReadLine());
+                    LemonBoss.GetTotalDailyPopStandsProfit();
+                    Console.WriteLine("The ppd or pops Per Day at " + stand.Name + " is " + stand.PopsPerDay + ".");
+                    Console.WriteLine("So if you were to sell " + stand.PopsPerDay + " cpd at " + stand.Name
+                                      + " at " + stand.PricePerPop + " per pop " +
+                                      " your total revenue per day at " + stand.Name
+                                      + " will be " + stand.PopStandTotalDailyRevenue());
+                    LemonBoss.GetTotalDailyPopStandsRevenue();
+                    Console.WriteLine();
+                    Console.WriteLine("And your total daily cost would be " + stand.PopStandTotalDailyCost());
+                    Console.WriteLine();
+                    Console.WriteLine("which means that your total daily profits will be " + stand.PopStandTotalDailyProfit());
 
-                LemonBoss.popsicleStands.Add(stand);
+                    LemonBoss.popsicleStands.Add(stand);
+                }
+
+
             }
+
             Console.WriteLine("Did you want to open any hotdog stands?");
 
             Console.WriteLine("Total revenue for all lemonade stands is: " + LemonBoss.GetTotalDailyAdeStandsRevenue());
