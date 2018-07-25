@@ -5,51 +5,91 @@ namespace LemonadeStandCompany
     public class LemonadeCorporation
     {
         public string Name { get; set; }
-        public List<LemonadeStand> Locations { get; set; } = new List<LemonadeStand>();
+        public List<LemonadeStand> AdeStands { get; set; } = new List<LemonadeStand>();
         public List<PopsicleStand> popsicleStands { get; set; } = new List<PopsicleStand>();
 
-
-        public decimal GetCorpTotalDailyRevenue()
+        //next 3 methods get total daily rev, cost, and profit for all stands
+        public decimal GetTotalDailyAdeStandsRevenue()
         {
-            decimal grandTotalRev = 0;
-            foreach (LemonadeStand location in Locations)
+            decimal grandTotalAdeStandRev = 0;
+            foreach (LemonadeStand stand in AdeStands )
             {
-                grandTotalRev += location.TotalDailyRevenue();
+                grandTotalAdeStandRev += stand.TotalDailyRevenue();
+            }
+           
+            return grandTotalAdeStandRev;
+        }
+
+        public decimal GetTotalDailyAdeStandsCost()
+        {
+            decimal grandTotalAdeStandCost = 0;
+            foreach (LemonadeStand stand in AdeStands)
+            {
+                grandTotalAdeStandCost += stand.TotalDailyCost();
             }
             foreach (PopsicleStand PopStand in popsicleStands)
             {
-                grandTotalRev += PopStand.PopStandTotalDailyRevenue();
+                grandTotalAdeStandCost += PopStand.PopStandTotalDailyCost();
             }
-            return grandTotalRev;
+            return grandTotalAdeStandCost;
         }
 
-        public decimal GetCorpTotalDailyCost()
+        public decimal GetTotalDailyAdeStandsProfit()
         {
-            decimal grandTotalCost = 0;
-            foreach (LemonadeStand location in Locations)
+            decimal grandTotalAdeStandProfit = 0;
+            foreach (LemonadeStand stand in AdeStands)
             {
-                grandTotalCost += location.TotalDailyCost();
+                grandTotalAdeStandProfit += stand.TotalDailyProfit();
             }
             foreach (PopsicleStand PopStand in popsicleStands)
             {
-                grandTotalCost += PopStand.PopStandTotalDailyCost();
+                grandTotalAdeStandProfit += PopStand.PopStandTotalDailyProfit();
             }
-            return grandTotalCost;
+            return grandTotalAdeStandProfit;
         }
 
-        public decimal GetCorpTotalDailyProfit()
+        public decimal GetTotalDailyPopStandsRevenue()
         {
-            decimal grandTotalProfit = 0;
-            foreach (LemonadeStand location in Locations)
-            {
-                grandTotalProfit += location.TotalDailyProfit();
-            }
+            decimal grandTotalPopStandRev = 0;
             foreach (PopsicleStand PopStand in popsicleStands)
             {
-                grandTotalProfit += PopStand.PopStandTotalDailyProfit();
+                grandTotalPopStandRev += PopStand.PopStandTotalDailyRevenue();
             }
-            return grandTotalProfit;
+            return grandTotalPopStandRev;
         }
 
+        public decimal GetTotalDailyPopStandsCosts()
+        {
+            decimal grandTotalPopStandCost = 0;
+            foreach (PopsicleStand PopStand in popsicleStands)
+            {
+                grandTotalPopStandCost += PopStand.PopStandTotalDailyCost();
+            }
+            return grandTotalPopStandCost;
+        }
+        public decimal GetTotalDailyPopStandsProfit()
+        {
+            decimal grandTotalPopStandsProfits = 0;
+            foreach (PopsicleStand PopStand in popsicleStands)
+            {
+                grandTotalPopStandsProfits += PopStand.PopStandTotalDailyRevenue();
+            }
+            return grandTotalPopStandsProfits;
+        }
+
+        public decimal GetAllStandsCombinedRevenue()
+        {
+            return GetTotalDailyAdeStandsRevenue() + GetTotalDailyPopStandsRevenue();
+        }
+
+        public decimal GetAllStandsCombinedCost()
+        {
+            return GetTotalDailyAdeStandsCost() + GetTotalDailyPopStandsCosts();
+        }
+
+        public decimal GetAllStandsCombinedProfit()
+        {
+            return GetAllStandsCombinedRevenue() - GetAllStandsCombinedCost();
+        }
     }
 }
