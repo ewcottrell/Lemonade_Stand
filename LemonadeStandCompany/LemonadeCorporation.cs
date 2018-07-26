@@ -27,10 +27,7 @@ namespace LemonadeStandCompany
             {
                 grandTotalAdeStandCost += stand.TotalDailyCost();
             }
-            foreach (PopsicleStand PopStand in popsicleStands)
-            {
-                grandTotalAdeStandCost += PopStand.PopStandTotalDailyCost();
-            }
+           
             return grandTotalAdeStandCost;
         }
 
@@ -41,10 +38,7 @@ namespace LemonadeStandCompany
             {
                 grandTotalAdeStandProfit += stand.TotalDailyProfit();
             }
-            foreach (PopsicleStand PopStand in popsicleStands)
-            {
-                grandTotalAdeStandProfit += PopStand.PopStandTotalDailyProfit();
-            }
+
             return grandTotalAdeStandProfit;
         }
 
@@ -90,6 +84,11 @@ namespace LemonadeStandCompany
         public decimal GetAllStandsCombinedProfit()
         {
             return GetAllStandsCombinedRevenue() - GetAllStandsCombinedCost();
+        }
+
+        public static void GetCombinedProspectiveNumbers()
+        {
+            
         }
     }
 }

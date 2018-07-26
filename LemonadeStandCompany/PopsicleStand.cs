@@ -24,5 +24,7 @@ namespace LemonadeStandCompany
             return PopStandTotalDailyRevenue() - PopStandTotalDailyCost();
 
         }
+
+
     }
 }
