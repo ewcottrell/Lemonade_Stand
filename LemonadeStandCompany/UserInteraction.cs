@@ -1,17 +1,18 @@
 ﻿using System;
+using System.Linq;
+
 namespace LemonadeStandCompany
 {
     public class UserInteraction
     {
         public static int GetUserIntegerNumber(string question)
         {
-            int number;
             Console.WriteLine(question);
-            bool isANumber = int.TryParse(Console.ReadLine(), out number);
+            bool isANumber = int.TryParse(Console.ReadLine(), out int number);
 
-            while (isANumber == false)
+            while (!isANumber)
             {
-                Console.WriteLine("Not a number  " + question);
+                Console.WriteLine("Not a number. " + question);
                 isANumber = int.TryParse(Console.ReadLine(), out number);
             }
             return number;
@@ -19,14 +20,12 @@ namespace LemonadeStandCompany
 
         public static decimal GetUserDecimalNumbers(string question)
         {
-            decimal number;
             Console.WriteLine(question);
-            bool isANumber = decimal.TryParse(Console.ReadLine(), out number);
 
-            while (isANumber == false)
+            decimal number;
+            while (!decimal.TryParse(Console.ReadLine(), out number))
             {
-                Console.WriteLine("Not a number  " + question);
-                isANumber = decimal.TryParse(Console.ReadLine(), out number);
+                Console.WriteLine("Not a number. " + question);
             }
             return number;
         }
@@ -35,17 +34,7 @@ namespace LemonadeStandCompany
         {
             string[] yesOption = { "YES", "YEAH", "Y", "YEP", "YUP" };
             Console.WriteLine(question);
-            string response = Console.ReadLine();
-
-            foreach (string option in yesOption)
-            {
-                if (option == response.ToUpper())
-                {
-                    return true; 
-                }
-            }
-
-            return false;
+            return yesOption.Contains(Console.ReadLine().ToUpper());
         }
     }
 }
